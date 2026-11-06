@@ -62,7 +62,9 @@ class FakeError(Exception):
 
 
 class FakeAuthError(FakeError):
-    pass
+    def __init__(self, message: str, *, code: str | None = None) -> None:
+        super().__init__(message)
+        self.code = code
 
 
 class FakeOrderKey:
@@ -519,6 +521,37 @@ def test_pair_status_normalization() -> None:
     print(f"[ok] status pair: {len(cases)} varian, load_pairs memilih {picked}")
 
 
+def test_policy_denied_pair_quarantined() -> None:
+    """Pair yang ditolak policy API key tidak boleh ditembak ulang tiap siklus."""
+
+    class DeniedClient(FakeClient):
+        def __init__(self) -> None:
+            super().__init__()
+            self.attempts: dict[str, int] = {}
+
+        async def orders_create(self, **kw):
+            sym = kw["symbol"]
+            self.attempts[sym] = self.attempts.get(sym, 0) + 1
+            if sym == "ARB-USDT":
+                raise FakeAuthError("Sub-account policy does not allow trading this pair.",
+                                    code="ERROR_CODE_POLICY_MARKET_DENY")
+            return await super().orders_create(**kw)
+
+    fake = _wire(DeniedClient())
+    orig_cycles, orig_delay = bot.MAX_CYCLES, bot.CYCLE_DELAY
+    bot.MAX_CYCLES, bot.CYCLE_DELAY = 3, 0
+    try:
+        stats = asyncio.run(bot.run_account(fake, "test"))
+    finally:
+        bot.MAX_CYCLES, bot.CYCLE_DELAY = orig_cycles, orig_delay
+
+    assert "ARB-USDT" in stats.denied, stats.denied
+    assert fake.attempts.get("ARB-USDT") == 1, f"ARB dicoba {fake.attempts.get('ARB-USDT')}x"
+    assert any(o["side"] == "buy" and o["symbol"] != "ARB-USDT" for o in fake.created)
+    print(f"[ok] policy deny: ARB-USDT dikarantina setelah 1 percobaan, "
+          f"pair lain tetap jalan ({len(fake.created)} order)")
+
+
 TESTS = [
     test_plan_quotes_inside_spread,
     test_plan_quotes_spread_1_tick,
@@ -528,6 +561,7 @@ TESTS = [
     test_pair_status_normalization,
     test_new_strategy_quotes_live_books,
     test_bot_places_orders,
+    test_policy_denied_pair_quarantined,
     test_multi_account_runs_in_parallel,
 ]
 

@@ -201,7 +201,7 @@ Cek output `doctor.py`, lalu cocokkan:
 | Yang muncul | Arti / tindakan |
 | --- | --- |
 | `INSUFFICIENT_FUNDS` + tabel saldo `funding > 0, available = 0` | dana masih di funding; transfer funding → trading |
-| `PERMISSION_DENIED` / 403 | API key belum diberi izin **Spot trading** / market / max order size |
+| `ERROR_CODE_POLICY_MARKET_DENY` / `PERMISSION_DENIED` | API key/subaccount policy tidak mengizinkan pair itu (atau Spot trading belum aktif). Bot mengarantina pair tersebut sampai restart; aktifkan market di **API key → Permissions** / subaccount policy, atau batasi lewat `BOT_PAIRS` |
 | `ERROR_CODE_MIN_NOTIONAL` | naikkan `BOT_ORDER_PCT` atau equity |
 | `ERROR_CODE_QTY_STEP_SIZE` | `step_size` pair (bot sudah membulatkan; muncul kalau katalog basi) |
 | `ERROR_CODE_POST_ONLY_CROSS` | book bergerak; bot sudah retry, atau set `BOT_IMPROVE_TICKS=0` |

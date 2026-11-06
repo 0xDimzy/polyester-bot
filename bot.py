@@ -292,13 +292,16 @@ class Stats:
     last_taker: dict = field(default_factory=dict)
     explained: set = field(default_factory=set)
     reasons: Counter = field(default_factory=Counter)
+    # pair yang ditolak permanen oleh policy API key (symbol -> kode error)
+    denied: dict = field(default_factory=dict)
 
     def line(self) -> str:
         mins = (time.time() - self.started) / 60
+        extra = f" ditolak-policy={len(self.denied)}" if self.denied else ""
         return (
             f"{mins:.1f} mnt | order dipasang={self.placed} aktif={len(self.live)} gagal={self.failed} "
             f"terisi={self.fills} volume={fmt(self.volume, 2)} taker={self.takers} "
-            f"pendanaan={self.refills} dilewati={self.skipped}"
+            f"pendanaan={self.refills} dilewati={self.skipped}{extra}"
         )
 
 
@@ -922,9 +925,24 @@ async def run_account(client, account_name: str) -> None:
                     log.warning("Pendanaan gagal: %s", err_text(e))
 
                 for pair in pairs:
+                    if pair.symbol in stats.denied:
+                        continue
                     try:
                         await quote_pair(client, stats, pair, bal, refs, equity, targets,
                                          per_asset, maker_bps)
+                    except PolyesterAuthError as e:
+                        code = str(getattr(e, "code", "") or "")
+                        if any(k in code for k in ("POLICY", "PERMISSION", "DENY")):
+                            # Permanen untuk sesi ini: jangan tembak ulang tiap siklus.
+                            stats.denied[pair.symbol] = code or "AUTH_DENIED"
+                            log.warning(
+                                "%s: DITOLAK POLICY (%s) — API key/subaccount tidak boleh "
+                                "trading pair ini. Dilewati sampai bot di-restart. Aktifkan di "
+                                "app (API key → Permissions / subaccount policy) atau batasi "
+                                "lewat BOT_PAIRS.", pair.symbol, code)
+                        else:
+                            stats.failed += 1
+                            log.warning("%s: auth error -> %s", pair.symbol, err_text(e))
                     except PolyesterError as e:
                         stats.failed += 1
                         log.warning("%s: error -> %s", pair.symbol, err_text(e))
@@ -932,6 +950,12 @@ async def run_account(client, account_name: str) -> None:
                         stats.failed += 1
                         stats.reasons["error internal"] += 1
                         log.warning("%s: error tak terduga -> %s", pair.symbol, err_text(e))
+
+                if stats.denied and len(stats.denied) >= len(pairs):
+                    log.error("Semua %d pair ditolak policy API key (%s). Bot berhenti — "
+                              "periksa izin Spot trading / daftar market pada API key.",
+                              len(pairs), ", ".join(sorted(stats.denied)[:5]))
+                    break
 
                 if stats.reasons:
                     top = ", ".join(f"{k}={v}" for k, v in stats.reasons.most_common(4))
