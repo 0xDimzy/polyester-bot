@@ -45,8 +45,12 @@ def line(title: str) -> None:
     print(f"\n=== {title} " + "=" * max(0, 60 - len(title)))
 
 
-def load_account() -> dict | None:
-    for suffix in ("_1", ""):
+def load_account(index: int = 1) -> dict | None:
+    """Ambil akun ke-`index` (`_1`, `_2`, ...); tanpa suffix dipakai untuk akun 1."""
+    suffixes = [f"_{index}"]
+    if index == 1:
+        suffixes.append("")
+    for suffix in suffixes:
         key_id = os.getenv(f"POLYESTER_API_KEY_ID{suffix}")
         private = os.getenv(f"POLYESTER_API_PRIVATE_KEY{suffix}")
         account_id = os.getenv(f"POLYESTER_ACCOUNT_ID{suffix}")
@@ -55,11 +59,11 @@ def load_account() -> dict | None:
     return None
 
 
-async def run(symbol_filter: str, do_place: bool) -> None:
-    acc = load_account()
+async def run(symbol_filter: str, do_place: bool, index: int = 1) -> None:
+    acc = load_account(index)
     if not acc:
-        print("Tidak menemukan kredensial. Isi POLYESTER_API_KEY_ID_1 / "
-              "POLYESTER_API_PRIVATE_KEY_1 / POLYESTER_ACCOUNT_ID_1 di .env")
+        print(f"Tidak menemukan kredensial akun {index}. Isi POLYESTER_API_KEY_ID_{index} / "
+              f"POLYESTER_API_PRIVATE_KEY_{index} / POLYESTER_ACCOUNT_ID_{index} di .env")
         return
 
     kwargs = {
@@ -217,9 +221,10 @@ async def run(symbol_filter: str, do_place: bool) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--symbol", default=os.getenv("BOT_PAIRS", "").split(",")[0].strip())
+    ap.add_argument("--account", type=int, default=1, help="akun ke-N (suffix _N di .env)")
     ap.add_argument("--place", action="store_true", help="kirim 1 order beli kecil lalu batalkan")
     args = ap.parse_args()
-    asyncio.run(run(args.symbol, args.place))
+    asyncio.run(run(args.symbol, args.place, args.account))
 
 
 if __name__ == "__main__":

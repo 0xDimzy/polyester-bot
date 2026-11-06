@@ -285,9 +285,8 @@ class FakeClient:
         self._filled[coid] = order
 
 
-async def _run_bot() -> FakeClient:
-    fake = FakeClient()
-    # bot memakai atribut service berbentuk `client.orders.create`, dst.
+def _wire(fake: "FakeClient") -> "FakeClient":
+    """Lampirkan service client pada fake (bentuknya sama seperti AsyncPolyester)."""
     fake.orders = SimpleNamespace(
         create=fake.orders_create,
         cancel=fake.orders_cancel,
@@ -298,6 +297,11 @@ async def _run_bot() -> FakeClient:
     fake.fees = SimpleNamespace(get_spot_fee_rates=fake.fees_get_spot_fee_rates)
     fake.orderbook = SimpleNamespace(get=fake.orderbook_get)
     fake.market_overview = SimpleNamespace(list=fake.market_overview_list)
+    return fake
+
+
+async def _run_bot() -> FakeClient:
+    fake = _wire(FakeClient())
 
     orig_cycle_delay = bot.CYCLE_DELAY
     bot.CYCLE_DELAY = 0
@@ -435,6 +439,56 @@ def test_new_strategy_quotes_live_books() -> None:
     print(f"[ok] strategi baru mengkuotasi {viable}/{total} pair pada book testnet nyata")
 
 
+def test_multi_account_runs_in_parallel() -> None:
+    """Dua akun di .env -> dua client terpisah, label log berbeda, dua-duanya trading."""
+    keys = [(f"POLYESTER_API_KEY_ID_{i}", f"key{i}") for i in (1, 2)]
+    keys += [(f"POLYESTER_API_PRIVATE_KEY_{i}", f"priv{i}") for i in (1, 2)]
+    keys += [(f"POLYESTER_ACCOUNT_ID_{i}", f"acc{i}") for i in (1, 2)]
+    # akun 3 sengaja setengah terisi: harus dilewati, bukan menghentikan loop
+    keys += [("POLYESTER_API_KEY_ID_3", "key3"), ("POLYESTER_ACCOUNT_ID_3", "acc3")]
+    for name, value in keys:
+        os.environ[name] = value
+
+    created: list[FakeClient] = []
+
+    class Ctx:
+        def __init__(self, client: FakeClient) -> None:
+            self.client = client
+
+        async def __aenter__(self) -> FakeClient:
+            self.client.acct_label = bot.ACCT.get()
+            return self.client
+
+        async def __aexit__(self, *exc) -> bool:
+            return False
+
+    def factory(**kwargs):
+        fake = _wire(FakeClient())
+        fake.kw = kwargs
+        created.append(fake)
+        return Ctx(fake)
+
+    orig_polyester = bot.AsyncPolyester
+    orig_setup = bot.setup_logging
+    bot.AsyncPolyester = factory
+    bot.setup_logging = lambda: None
+    try:
+        asyncio.run(bot.main())
+    finally:
+        bot.AsyncPolyester = orig_polyester
+        bot.setup_logging = orig_setup
+        for name, _ in keys:
+            os.environ.pop(name, None)
+
+    assert len(created) == 2, f"harus 2 akun jalan, dapat {len(created)}"
+    assert {c.kw["api_key_id"] for c in created} == {"key1", "key2"}
+    assert {c.acct_label for c in created} == {"akun1", "akun2"}, "label log per akun tertukar"
+    assert all(c.created for c in created), "ada akun yang tidak memasang order"
+    assert all(any(o["side"] == "buy" for o in c.created) for c in created), "ada akun tanpa order beli"
+    print(f"[ok] multi akun: {len(created)} client paralel, "
+          f"order masing-masing = {[len(c.created) for c in created]}")
+
+
 TESTS = [
     test_plan_quotes_inside_spread,
     test_plan_quotes_spread_1_tick,
@@ -443,6 +497,7 @@ TESTS = [
     test_live_catalog_parsing,
     test_new_strategy_quotes_live_books,
     test_bot_places_orders,
+    test_multi_account_runs_in_parallel,
 ]
 
 

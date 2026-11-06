@@ -136,9 +136,10 @@ cp .env.example .env      # isi API key, private key, account id
 Diagnosa dulu (tidak mengirim order, kecuali `--place`):
 
 ```bash
-python doctor.py                 # katalog, saldo, fee, spread, preview order beli
-python doctor.py --place         # benar-benar kirim 1 order beli kecil lalu batalkan
+python doctor.py                        # katalog, saldo, fee, spread, preview order beli
+python doctor.py --place                # benar-benar kirim 1 order beli kecil lalu batalkan
 python doctor.py --symbol ETH-USDT --place
+python doctor.py --account 2 --place    # diagnosa akun kedua (suffix _2 di .env)
 ```
 
 `doctor.py` mencetak kode error mentah (`ERROR_CODE_...`), daftar `violations`,
@@ -152,6 +153,46 @@ python bot.py
 # atau
 BOT_DRY_RUN=1 python bot.py
 ```
+
+## Multi akun
+
+Bisa, dan jalan **paralel** dalam satu proses. Cukup tambah suffix angka di
+`.env`:
+
+```env
+POLYESTER_API_KEY_ID_1=...
+POLYESTER_API_PRIVATE_KEY_1=...
+POLYESTER_ACCOUNT_ID_1=...
+
+POLYESTER_API_KEY_ID_2=...
+POLYESTER_API_PRIVATE_KEY_2=...
+POLYESTER_ACCOUNT_ID_2=...
+```
+
+Yang terjadi:
+
+* `load_accounts()` membaca `_1`, `_2`, ... sampai ketemu nomor yang kosong.
+* Tiap akun dapat `AsyncPolyester` sendiri, `Stats` sendiri, equity/target
+  inventory sendiri, dan berjalan sebagai task `asyncio` terpisah.
+* Label log per akun: `17:20:01 INFO    [akun2] OK   ETH-USDT BUY ...`
+  (pakai `ContextVar`, jadi tidak saling menimpa walau interleaved).
+* `BOT_*` tetap global untuk semua akun. Yang per-akun otomatis: saldo, equity,
+  order yang dibatalkan saat start, dan `ORDER_PCT` (persentase dari equity
+  masing-masing).
+
+Aturan mainnya:
+
+1. Penomoran harus mulai dari `_1` (tidak boleh langsung `_2`).
+2. Satu `account_id` hanya boleh muncul sekali. Kalau dobel, akun kedua
+   dilewati dengan peringatan — dua worker di akun yang sama akan saling
+   membatalkan order karena sama-sama memakai prefix `bot-`.
+3. Entri yang cuma terisi sebagian dilewati (dengan peringatan), akun lain
+   tetap jalan. Jadi salah ketik di akun 2 tidak mematikan akun 1.
+4. Setiap API key punya policy sendiri — pastikan semuanya punya izin
+   **Spot trading** dan daftar market yang sama kalau ingin perilaku identik.
+5. Beban API naik linear: N akun × jumlah pair call `orderbook.get` per siklus.
+   Rate limit dihitung per API key, jadi biasanya aman; kalau mesin terasa
+   berat, naikkan `BOT_CYCLE_DELAY`.
 
 ## Kalau order beli masih gagal
 

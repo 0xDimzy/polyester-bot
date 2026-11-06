@@ -155,15 +155,27 @@ def err_text(e: Exception) -> str:
 
 
 def load_accounts() -> list[dict]:
-    """Baca akun dari .env dengan suffix _1, _2, _3, ..."""
-    accounts = []
+    """Baca akun dari .env dengan suffix _1, _2, _3, ...
+
+    Penomoran harus mulai dari 1 tanpa lompatan di awal. Entri yang cuma terisi
+    sebagian dilewati (dengan peringatan) supaya salah ketik di satu akun tidak
+    mematikan akun lain. `account_id` ganda dibuang: dua worker pada akun yang
+    sama akan saling membatalkan order karena keduanya memakai prefix `bot-`.
+    """
+    accounts: list[dict] = []
     i = 1
     while True:
         key_id = os.getenv(f"POLYESTER_API_KEY_ID_{i}")
         private = os.getenv(f"POLYESTER_API_PRIVATE_KEY_{i}")
         account_id = os.getenv(f"POLYESTER_ACCOUNT_ID_{i}")
-        if not all([key_id, private, account_id]):
+        if not any([key_id, private, account_id]):
             break
+        if not all([key_id, private, account_id]):
+            log.warning("Akun %d dilewati: kredensial tidak lengkap "
+                        "(isi POLYESTER_API_KEY_ID_%d, POLYESTER_API_PRIVATE_KEY_%d, "
+                        "POLYESTER_ACCOUNT_ID_%d).", i, i, i, i)
+            i += 1
+            continue
         accounts.append({
             "name": f"akun{i}",
             "api_key_id": key_id,
@@ -171,6 +183,7 @@ def load_accounts() -> list[dict]:
             "account_id": account_id,
         })
         i += 1
+
     if not accounts:
         key_id = os.getenv("POLYESTER_API_KEY_ID")
         private = os.getenv("POLYESTER_API_PRIVATE_KEY")
@@ -182,7 +195,18 @@ def load_accounts() -> list[dict]:
                 "api_private_key": private,
                 "account_id": account_id,
             })
-    return accounts
+
+    unique: list[dict] = []
+    seen: dict[str, str] = {}
+    for acc in accounts:
+        first = seen.get(acc["account_id"])
+        if first is not None:
+            log.warning("Akun %s dilewati: account_id sama dengan %s (dua worker di satu "
+                        "akun akan saling membatalkan order).", acc["name"], first)
+            continue
+        seen[acc["account_id"]] = acc["name"]
+        unique.append(acc)
+    return unique
 
 
 class Pair:
