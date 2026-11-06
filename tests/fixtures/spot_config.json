@@ -1,0 +1,1050 @@
+{
+ "maxOpenOrdersTotal": 1000,
+ "tsSec": "1793959073",
+ "assets": [
+  {
+   "asset": "ARB",
+   "ledgerId": 42,
+   "marketDataVolumeScale": 6,
+   "name": "Arbitrum",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "AVAX",
+   "ledgerId": 22,
+   "marketDataVolumeScale": 6,
+   "name": "Avalanche",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "BCH",
+   "ledgerId": 20,
+   "marketDataVolumeScale": 8,
+   "name": "Bitcoin Cash",
+   "quantityDisplayDecimals": 8,
+   "quantityScale": 8
+  },
+  {
+   "asset": "BNB",
+   "ledgerId": 5,
+   "marketDataVolumeScale": 6,
+   "name": "BNB",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "BONK",
+   "ledgerId": 7,
+   "marketDataVolumeScale": 0,
+   "name": "Bonk",
+   "quantityDisplayDecimals": 0,
+   "quantityScale": 0
+  },
+  {
+   "asset": "BTC",
+   "ledgerId": 3,
+   "marketDataVolumeScale": 8,
+   "name": "Bitcoin",
+   "quantityDisplayDecimals": 8,
+   "quantityScale": 8
+  },
+  {
+   "asset": "DOGE",
+   "ledgerId": 19,
+   "marketDataVolumeScale": 1,
+   "name": "Dogecoin",
+   "quantityDisplayDecimals": 8,
+   "quantityScale": 8
+  },
+  {
+   "asset": "ETC",
+   "ledgerId": 26,
+   "marketDataVolumeScale": 8,
+   "name": "Ethereum Classic",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 8
+  },
+  {
+   "asset": "ETH",
+   "ledgerId": 6,
+   "marketDataVolumeScale": 6,
+   "name": "Ethereum",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "HYPE",
+   "ledgerId": 23,
+   "marketDataVolumeScale": 6,
+   "name": "Hyperliquid",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "LTC",
+   "ledgerId": 18,
+   "marketDataVolumeScale": 8,
+   "name": "Litecoin",
+   "quantityDisplayDecimals": 8,
+   "quantityScale": 8
+  },
+  {
+   "asset": "POL",
+   "ledgerId": 24,
+   "marketDataVolumeScale": 6,
+   "name": "Polygon",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "SHIB",
+   "ledgerId": 41,
+   "marketDataVolumeScale": 0,
+   "name": "Shiba Inu",
+   "quantityDisplayDecimals": 0,
+   "quantityScale": 0
+  },
+  {
+   "asset": "SOL",
+   "ledgerId": 4,
+   "marketDataVolumeScale": 6,
+   "name": "Solana",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "TRX",
+   "ledgerId": 25,
+   "marketDataVolumeScale": 6,
+   "name": "Tron",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "USDC",
+   "ledgerId": 2,
+   "marketDataVolumeScale": 6,
+   "name": "USD Coin",
+   "quantityDisplayDecimals": 4,
+   "quantityScale": 6
+  },
+  {
+   "asset": "USDT",
+   "ledgerId": 1,
+   "marketDataVolumeScale": 6,
+   "name": "Tether USD",
+   "quantityDisplayDecimals": 4,
+   "quantityScale": 6
+  },
+  {
+   "asset": "WLD",
+   "ledgerId": 44,
+   "marketDataVolumeScale": 6,
+   "name": "Worldcoin",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "XAUT",
+   "ledgerId": 40,
+   "marketDataVolumeScale": 6,
+   "name": "Tether Gold",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "XRP",
+   "ledgerId": 17,
+   "marketDataVolumeScale": 6,
+   "name": "Ripple",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "ZEC",
+   "ledgerId": 43,
+   "marketDataVolumeScale": 8,
+   "name": "Zcash",
+   "quantityDisplayDecimals": 8,
+   "quantityScale": 8
+  },
+  {
+   "asset": "tAVAX",
+   "ledgerId": 37,
+   "marketDataVolumeScale": 6,
+   "name": "Avalanche Testnet",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "tBCH",
+   "ledgerId": 34,
+   "marketDataVolumeScale": 8,
+   "name": "Bitcoin Cash Testnet",
+   "quantityDisplayDecimals": 8,
+   "quantityScale": 8
+  },
+  {
+   "asset": "tBNB",
+   "ledgerId": 30,
+   "marketDataVolumeScale": 6,
+   "name": "BNB Testnet",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "tBTC",
+   "ledgerId": 27,
+   "marketDataVolumeScale": 8,
+   "name": "Bitcoin Testnet",
+   "quantityDisplayDecimals": 8,
+   "quantityScale": 8
+  },
+  {
+   "asset": "tDOGE",
+   "ledgerId": 31,
+   "marketDataVolumeScale": 1,
+   "name": "Dogecoin Testnet",
+   "quantityDisplayDecimals": 8,
+   "quantityScale": 8
+  },
+  {
+   "asset": "tETC",
+   "ledgerId": 35,
+   "marketDataVolumeScale": 8,
+   "name": "Ethereum Classic Testnet",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 8
+  },
+  {
+   "asset": "tETH",
+   "ledgerId": 28,
+   "marketDataVolumeScale": 6,
+   "name": "Ethereum Testnet",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "tHYPE",
+   "ledgerId": 38,
+   "marketDataVolumeScale": 6,
+   "name": "Hyperliquid Testnet",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "tLTC",
+   "ledgerId": 32,
+   "marketDataVolumeScale": 8,
+   "name": "Litecoin Testnet",
+   "quantityDisplayDecimals": 8,
+   "quantityScale": 8
+  },
+  {
+   "asset": "tPOL",
+   "ledgerId": 36,
+   "marketDataVolumeScale": 6,
+   "name": "Polygon Testnet",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "tSOL",
+   "ledgerId": 29,
+   "marketDataVolumeScale": 6,
+   "name": "Solana Testnet",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "tTRX",
+   "ledgerId": 39,
+   "marketDataVolumeScale": 6,
+   "name": "Tron Testnet",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  },
+  {
+   "asset": "tXRP",
+   "ledgerId": 33,
+   "marketDataVolumeScale": 6,
+   "name": "Ripple Testnet",
+   "quantityDisplayDecimals": 6,
+   "quantityScale": 6
+  }
+ ],
+ "pairs": [
+  {
+   "allowBuyFeeFromBase": true,
+   "baseAsset": "ARB",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "1",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.1",
+   "symbol": "ARB-USDT",
+   "symbolId": 23,
+   "tickSize": "0.0001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.0001,
+     0.001,
+     0.01,
+     0.1,
+     1
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "AVAX",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.1",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "AVAX-USDT",
+   "symbolId": 15,
+   "tickSize": "0.001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.001,
+     0.01,
+     0.1,
+     1,
+     10
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "BCH",
+   "baseQuantityScale": 8,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.01",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "BCH-USDT",
+   "symbolId": 13,
+   "tickSize": "0.1",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.1,
+     1,
+     10,
+     100,
+     1000
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "BNB",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.001",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "BNB-USDT",
+   "symbolId": 4,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": true,
+   "baseAsset": "BONK",
+   "baseQuantityScale": 0,
+   "defaultMarketSlippageBpsBuy": 1000,
+   "defaultMarketSlippageBpsSell": 1000,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 500,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "100000",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "1",
+   "symbol": "BONK-USDT",
+   "symbolId": 20,
+   "tickSize": "0.000000001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     1e-09,
+     1e-08,
+     1e-07,
+     1e-06,
+     1e-05
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "BTC",
+   "baseQuantityScale": 8,
+   "defaultMarketSlippageBpsBuy": 200,
+   "defaultMarketSlippageBpsSell": 200,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 100,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.0001",
+   "quoteAsset": "USDC",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "DISABLED",
+   "stepSize": "0.00000001",
+   "symbol": "BTC-USDC",
+   "symbolId": 7,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": true,
+   "baseAsset": "BTC",
+   "baseQuantityScale": 8,
+   "defaultMarketSlippageBpsBuy": 200,
+   "defaultMarketSlippageBpsSell": 200,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 100,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.00001",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.00000001",
+   "symbol": "BTC-USDT",
+   "symbolId": 1,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "DOGE",
+   "baseQuantityScale": 8,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "10",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "DOGE-USDT",
+   "symbolId": 6,
+   "tickSize": "0.00001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     1e-05,
+     0.0001,
+     0.001,
+     0.01,
+     0.1
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "ETC",
+   "baseQuantityScale": 8,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.1",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "ETC-USDT",
+   "symbolId": 17,
+   "tickSize": "0.001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.001,
+     0.01,
+     0.1,
+     1,
+     10
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "ETH",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 200,
+   "defaultMarketSlippageBpsSell": 200,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 100,
+   "maxOpenOrdersPerPair": 200,
+   "minNotionalQuote": "0.0001",
+   "minQtyBase": "0.0001",
+   "quoteAsset": "BTC",
+   "quoteQuantityScale": 8,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "ETH-BTC",
+   "symbolId": 10,
+   "tickSize": "0.00001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     1e-05,
+     0.0001,
+     0.001,
+     0.01,
+     0.1
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "ETH",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 200,
+   "defaultMarketSlippageBpsSell": 200,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 100,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.001",
+   "quoteAsset": "USDC",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "ETH-USDC",
+   "symbolId": 8,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "ETH",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 200,
+   "defaultMarketSlippageBpsSell": 200,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 100,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.0001",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "ETH-USDT",
+   "symbolId": 2,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "HYPE",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.01",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.0001",
+   "symbol": "HYPE-USDT",
+   "symbolId": 18,
+   "tickSize": "0.001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.001,
+     0.01,
+     0.1,
+     1,
+     10
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "LTC",
+   "baseQuantityScale": 8,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.01",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "LTC-USDT",
+   "symbolId": 12,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "POL",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "10",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.01",
+   "symbol": "POL-USDT",
+   "symbolId": 16,
+   "tickSize": "0.00001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     1e-05,
+     0.0001,
+     0.001,
+     0.01,
+     0.1
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": true,
+   "baseAsset": "SHIB",
+   "baseQuantityScale": 0,
+   "defaultMarketSlippageBpsBuy": 1000,
+   "defaultMarketSlippageBpsSell": 1000,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 500,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "100000",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "1",
+   "symbol": "SHIB-USDT",
+   "symbolId": 21,
+   "tickSize": "0.000000001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     1e-09,
+     1e-08,
+     1e-07,
+     1e-06,
+     1e-05
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "SOL",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.01",
+   "quoteAsset": "USDC",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.00001",
+   "symbol": "SOL-USDC",
+   "symbolId": 9,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "SOL",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.01",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "SOL-USDT",
+   "symbolId": 3,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "TRX",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "1",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "TRX-USDT",
+   "symbolId": 14,
+   "tickSize": "0.00001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     1e-05,
+     0.0001,
+     0.001,
+     0.01,
+     0.1
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "USDC",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 50,
+   "defaultMarketSlippageBpsSell": 50,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 20,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "1",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "USDC-USDT",
+   "symbolId": 19,
+   "tickSize": "0.00001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     1e-05,
+     0.0001,
+     0.001,
+     0.01,
+     0.1
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": true,
+   "baseAsset": "WLD",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "1",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "DISABLED",
+   "stepSize": "0.1",
+   "symbol": "WLD-USDT",
+   "symbolId": 25,
+   "tickSize": "0.0001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.0001,
+     0.001,
+     0.01,
+     0.1,
+     1
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": true,
+   "baseAsset": "XAUT",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 200,
+   "defaultMarketSlippageBpsSell": 200,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 100,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.001",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "XAUT-USDT",
+   "symbolId": 22,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "XRP",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxOpenOrdersPerPair": 200,
+   "minNotionalQuote": "0.0001",
+   "minQtyBase": "0.1",
+   "quoteAsset": "BTC",
+   "quoteQuantityScale": 8,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.1",
+   "symbol": "XRP-BTC",
+   "symbolId": 11,
+   "tickSize": "0.00000001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     1e-08,
+     1e-07,
+     1e-06,
+     1e-05,
+     0.0001
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": false,
+   "baseAsset": "XRP",
+   "baseQuantityScale": 6,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "1",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.000001",
+   "symbol": "XRP-USDT",
+   "symbolId": 5,
+   "tickSize": "0.0001",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.0001,
+     0.001,
+     0.01,
+     0.1,
+     1
+    ]
+   }
+  },
+  {
+   "allowBuyFeeFromBase": true,
+   "baseAsset": "ZEC",
+   "baseQuantityScale": 8,
+   "defaultMarketSlippageBpsBuy": 500,
+   "defaultMarketSlippageBpsSell": 500,
+   "listingAt": "2026-11-05T12:13:33.827104Z",
+   "maxClientRefDriftBps": 200,
+   "maxMarketNotionalQuote": "1000000",
+   "maxOpenOrdersPerPair": 200,
+   "maxOrderNotionalQuote": "5000000",
+   "minNotionalQuote": "5",
+   "minQtyBase": "0.001",
+   "quoteAsset": "USDT",
+   "quoteQuantityScale": 6,
+   "referencePriceScale": 9,
+   "status": "ENABLED",
+   "stepSize": "0.00001",
+   "symbol": "ZEC-USDT",
+   "symbolId": 24,
+   "tickSize": "0.01",
+   "marketdata": {
+    "orderbookPriceBuckets": [
+     0.01,
+     0.1,
+     1,
+     10,
+     100
+    ]
+   }
+  }
+ ]
+}
