@@ -85,11 +85,11 @@ async def run(symbol_filter: str, do_place: bool, index: int = 1) -> None:
         print(f"pair    : {len(pairs)}")
 
         line("Batasan order per pair (dari katalog resmi)")
-        print(f"{'symbol':14}{'tick':>12}{'step':>14}{'minQty':>12}{'minNotional':>13}{'status':>10}")
+        print(f"{'symbol':14}{'tick':>12}{'step':>14}{'minQty':>12}{'minNotional':>13}   {'status':<22}")
         for sym, p in sorted(pairs.items()):
             print(f"{sym:14}{p.get('tick_size', '-'):>12}{p.get('step_size', '-'):>14}"
-                  f"{p.get('min_qty_base', '-'):>12}{p.get('min_notional_quote', '-'):>13}"
-                  f"{str(p.get('status', '-')):>10}")
+                  f"{p.get('min_qty_base', '-'):>12}{p.get('min_notional_quote', '-'):>13}   "
+                  f"{str(p.get('status', '-')):<22}")
 
         line("Saldo")
         res = await client.balances.list()

@@ -75,7 +75,7 @@ MIN_SPREAD_BPS = _dec("BOT_MIN_SPREAD_BPS", "0")
 # Kalau 1: syarat spread = 2*fee + MIN_EDGE_BPS (mode cari profit, bukan volume).
 PROFITABLE_ONLY = _env_bool("BOT_PROFITABLE_ONLY", "0")
 MIN_EDGE_BPS = _dec("BOT_MIN_EDGE_BPS", "1")
-DEFAULT_MAKER_BPS = _dec("BOT_DEFAULT_MAKER_BPS", "2")
+DEFAULT_MAKER_BPS = _dec("BOT_DEFAULT_MAKER_BPS", "10")
 # 0 = join best bid/ask, 1 = maju satu tick ke tengah spread.
 IMPROVE_TICKS = int(os.getenv("BOT_IMPROVE_TICKS", "0"))
 # Kalau maker tidak kena selama N detik, ambil likuiditas (IOC di harga touch)
@@ -209,11 +209,22 @@ def load_accounts() -> list[dict]:
     return unique
 
 
+# Status pair datang sebagai nama enum proto (`PAIR_STATUS_ENABLED`) lewat
+# Connect/gRPC, tapi `ENABLED` lewat REST. Jangan pakai allowlist ketat: cukup
+# tolak yang jelas-jelas mati, sisanya biarkan server yang menolak.
+_DEAD_STATUS_MARKERS = ("DISABLED", "HALT", "SUSPEND", "DELIST", "PAUSED", "CLOSED", "UNSPECIFIED")
+
+
 class Pair:
     def __init__(self, row: dict):
         self.symbol: str = row["symbol"]
         self.base, _, self.quote = self.symbol.partition("-")
-        self.status: str = str(row.get("status") or "ENABLED").upper()
+        self.raw_status: str = str(row.get("status") or "").upper()
+        self.status: str = (
+            self.raw_status[len("PAIR_STATUS_"):]
+            if self.raw_status.startswith("PAIR_STATUS_")
+            else self.raw_status
+        )
         self.tick = Decimal(str(row.get("tick_size") or "0"))
         self.tick_ticks = max(int(self.tick * PRICE_DIVISOR), 1)
         self.step = Decimal(str(row.get("step_size") or "0"))
@@ -224,6 +235,10 @@ class Pair:
         self.min_notional = Decimal(str(row.get("min_notional_quote") or "0"))
         self.max_qty = Decimal(str(row.get("max_limit_qty_base") or "0"))
         self.max_notional = Decimal(str(row.get("max_order_notional_quote") or "0"))
+
+    def tradable(self) -> bool:
+        """False kalau katalog bilang pair mati/tidak terdefinisi."""
+        return not any(marker in self.status for marker in _DEAD_STATUS_MARKERS)
 
     def ok_size(self, qty: Decimal, price: Decimal) -> bool:
         return qty > 0 and qty >= self.min_qty and qty * price >= self.min_notional
@@ -796,7 +811,8 @@ def load_pairs(client) -> list[Pair]:
         if not isinstance(r, dict) or not r.get("symbol"):
             continue
         p = Pair(r)
-        if p.status not in ("ENABLED", "TRADING", "ACTIVE"):
+        if not p.tradable():
+            log.info("%s dilewati: status katalog %s", p.symbol, p.raw_status or "-")
             continue
         pairs.append(p)
     if PAIRS_FILTER:

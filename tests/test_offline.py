@@ -489,12 +489,43 @@ def test_multi_account_runs_in_parallel() -> None:
           f"order masing-masing = {[len(c.created) for c in created]}")
 
 
+def test_pair_status_normalization() -> None:
+    """Regresi: katalog SDK memberi `PAIR_STATUS_ENABLED`, bukan `ENABLED`."""
+    cases = {
+        "PAIR_STATUS_ENABLED": True,
+        "ENABLED": True,
+        "TRADING": True,
+        "PAIR_STATUS_DISABLED": False,
+        "DISABLED": False,
+        "HALTED": False,
+        "PAIR_STATUS_UNSPECIFIED": False,
+    }
+    for status, expected in cases.items():
+        got = bot.Pair({"symbol": "BTC-USDT", "status": status}).tradable()
+        assert got is expected, f"status {status!r} -> {got}, harusnya {expected}"
+    # tanpa field status: jangan buang pair, biar server yang menilai
+    assert bot.Pair({"symbol": "BTC-USDT"}).tradable() is True
+
+    class Cats:
+        spot_config = {"pairs": [
+            {"symbol": "BTC-USDT", "status": "PAIR_STATUS_ENABLED"},
+            {"symbol": "WLD-USDT", "status": "PAIR_STATUS_DISABLED"},
+            {"symbol": "ETH-USDT", "status": "ENABLED"},
+        ]}
+
+    client = SimpleNamespace(catalogs=Cats())
+    picked = [p.symbol for p in bot.load_pairs(client)]
+    assert picked == ["BTC-USDT", "ETH-USDT"], picked
+    print(f"[ok] status pair: {len(cases)} varian, load_pairs memilih {picked}")
+
+
 TESTS = [
     test_plan_quotes_inside_spread,
     test_plan_quotes_spread_1_tick,
     test_size_respects_min_notional,
     test_old_strategy_would_not_quote,
     test_live_catalog_parsing,
+    test_pair_status_normalization,
     test_new_strategy_quotes_live_books,
     test_bot_places_orders,
     test_multi_account_runs_in_parallel,
