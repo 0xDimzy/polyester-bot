@@ -994,6 +994,12 @@ async def main() -> None:
         return
 
     log.info("Menjalankan %d akun secara paralel...", len(accounts))
+    for acc in accounts:
+        log.info("  %-6s account_id=%s key=%s…%s", acc["name"], acc["account_id"],
+                 acc["api_key_id"][:6], acc["api_key_id"][-4:])
+    if len({a["account_id"] for a in accounts}) != len(accounts):
+        log.warning("Ada account_id yang sama di lebih dari satu worker; "
+                    "mereka akan saling membatalkan order.")
 
     async def run_one(acc: dict):
         ACCT.set(acc["name"])
